@@ -1,0 +1,1 @@
+## This Project is mainly intended lo explore the micro services world by playing with it
