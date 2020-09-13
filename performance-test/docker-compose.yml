@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  debug-test:
+    image: debug:latest
+    volumes:
+      - .:/wrk
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=info

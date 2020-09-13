@@ -1,0 +1,130 @@
+Statistical profiling result from isolate-0x103aea000-v8.log, (5529 ticks, 22 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+   4768   86.2%          /usr/local/bin/node
+     80    1.4%          /usr/lib/system/libsystem_kernel.dylib
+     17    0.3%          /usr/lib/system/libsystem_malloc.dylib
+     11    0.2%          /usr/lib/system/libsystem_platform.dylib
+      6    0.1%          /usr/lib/system/libsystem_pthread.dylib
+      5    0.1%          /usr/lib/libc++.1.dylib
+      2    0.0%          /usr/lib/system/libsystem_c.dylib
+      2    0.0%          /usr/lib/libobjc.A.dylib
+      1    0.0%          /usr/lib/libc++abi.dylib
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+    455    8.2%   71.4%  LazyCompile: *yooMemory /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:1:19
+     84    1.5%   13.2%  Builtin: RecordWrite
+     12    0.2%    1.9%  Builtin: GrowFastSmiOrObjectElements
+      8    0.1%    1.3%  Builtin: InterpreterEntryTrampoline
+      3    0.1%    0.5%  LazyCompile: ~setImmediate /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:14:22
+      3    0.1%    0.5%  Builtin: KeyedLoadIC
+      2    0.0%    0.3%  LazyCompile: ~pushAsyncIds internal/async_hooks.js:383:22
+      2    0.0%    0.3%  LazyCompile: ~getDefaultTriggerAsyncId internal/async_hooks.js:264:34
+      2    0.0%    0.3%  Builtin: StoreIC
+      2    0.0%    0.3%  Builtin: LoadIC_Uninitialized
+      2    0.0%    0.3%  Builtin: FastNewClosure
+      2    0.0%    0.3%  Builtin: CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit
+      1    0.0%    0.2%  LazyCompile: ~write buffer.js:895:40
+      1    0.0%    0.2%  LazyCompile: ~validateHeaderValue _http_outgoing.js:460:29
+      1    0.0%    0.2%  LazyCompile: ~validateHeaderName _http_outgoing.js:446:28
+      1    0.0%    0.2%  LazyCompile: ~validateAsyncId internal/async_hooks.js:112:25
+      1    0.0%    0.2%  LazyCompile: ~stat internal/modules/cjs/loader.js:84:14
+      1    0.0%    0.2%  LazyCompile: ~set /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/node_modules/express/lib/application.js:352:23
+      1    0.0%    0.2%  LazyCompile: ~send /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/node_modules/express/lib/response.js:107:25
+      1    0.0%    0.2%  LazyCompile: ~realpathSync fs.js:1395:22
+      1    0.0%    0.2%  LazyCompile: ~processTicksAndRejections internal/process/task_queues.js:59:35
+      1    0.0%    0.2%  LazyCompile: ~processImmediate internal/timers.js:400:28
+      1    0.0%    0.2%  LazyCompile: ~popAsyncIds internal/async_hooks.js:396:21
+      1    0.0%    0.2%  LazyCompile: ~nextTick internal/process/task_queues.js:114:18
+      1    0.0%    0.2%  LazyCompile: ~next /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/node_modules/express/lib/router/index.js:176:16
+      1    0.0%    0.2%  LazyCompile: ~makeRequireFunction internal/modules/cjs/helpers.js:10:29
+      1    0.0%    0.2%  LazyCompile: ~header /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/node_modules/express/lib/response.js:754:29
+      1    0.0%    0.2%  LazyCompile: ~getHighWaterMark internal/streams/state.js:10:26
+      1    0.0%    0.2%  LazyCompile: ~end _http_outgoing.js:686:45
+      1    0.0%    0.2%  LazyCompile: ~emitAfterScript internal/async_hooks.js:348:25
+      1    0.0%    0.2%  LazyCompile: ~doWrite _stream_writable.js:405:17
+      1    0.0%    0.2%  LazyCompile: ~destroyHooksExist internal/async_hooks.js:305:27
+      1    0.0%    0.2%  LazyCompile: ~contentType /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/node_modules/express/lib/response.js:594:32
+      1    0.0%    0.2%  LazyCompile: ~app.get /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/index.js:13:36
+      1    0.0%    0.2%  LazyCompile: ~_addListener events.js:204:22
+      1    0.0%    0.2%  LazyCompile: ~Readable.resume _stream_readable.js:921:37
+      1    0.0%    0.2%  LazyCompile: ~Immediate timers.js:212:14
+      1    0.0%    0.2%  LazyCompile: *validateAsyncId internal/async_hooks.js:112:25
+      1    0.0%    0.2%  Builtin: StringIndexOf
+      1    0.0%    0.2%  Builtin: StringAdd_CheckNone_NotTenured
+      1    0.0%    0.2%  Builtin: ResumeGeneratorTrampoline
+      1    0.0%    0.2%  Builtin: ReflectApply
+      1    0.0%    0.2%  Builtin: NumberIsSafeInteger
+      1    0.0%    0.2%  Builtin: KeyedStoreIC_Megamorphic
+      1    0.0%    0.2%  Builtin: KeyedStoreIC
+      1    0.0%    0.2%  Builtin: KeyedLoadIC_Megamorphic
+      1    0.0%    0.2%  Builtin: GetProperty
+      1    0.0%    0.2%  Builtin: DoubleToI
+      1    0.0%    0.2%  Builtin: CallFunction_ReceiverIsAny
+      1    0.0%    0.2%  Builtin: CEntry_Return1_DontSaveFPRegs_ArgvOnStack_BuiltinExit
+
+ [C++]:
+   ticks  total  nonlib   name
+
+ [Summary]:
+   ticks  total  nonlib   name
+    615   11.1%   96.5%  JavaScript
+      0    0.0%    0.0%  C++
+    195    3.5%   30.6%  GC
+   4892   88.5%          Shared libraries
+     22    0.4%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+   4768   86.2%  /usr/local/bin/node
+   4618   96.9%    /usr/local/bin/node
+   4493   97.3%      LazyCompile: *yooMemory /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:1:19
+   4493  100.0%        LazyCompile: ~setImmediate /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:14:22
+   4493  100.0%          LazyCompile: ~processImmediate internal/timers.js:400:28
+
+    455    8.2%  LazyCompile: *yooMemory /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:1:19
+    455  100.0%    LazyCompile: ~setImmediate /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:14:22
+    455  100.0%      LazyCompile: ~processImmediate internal/timers.js:400:28
+
+     84    1.5%  Builtin: RecordWrite
+     84  100.0%    LazyCompile: *yooMemory /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:1:19
+     84  100.0%      LazyCompile: ~setImmediate /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:14:22
+     84  100.0%        LazyCompile: ~processImmediate internal/timers.js:400:28
+
+     80    1.4%  /usr/lib/system/libsystem_kernel.dylib
+     32   40.0%    /usr/local/bin/node
+     25   78.1%      LazyCompile: *yooMemory /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:1:19
+     25  100.0%        LazyCompile: ~setImmediate /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/utils.js:14:22
+     25  100.0%          LazyCompile: ~processImmediate internal/timers.js:400:28
+      1    3.1%      LazyCompile: ~validateHeaderValue _http_outgoing.js:460:29
+      1  100.0%        LazyCompile: ~setHeader _http_outgoing.js:480:57
+      1  100.0%          LazyCompile: ~expressInit /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/node_modules/express/lib/middleware/init.js:29:30
+      1  100.0%            LazyCompile: ~handle /Users/ramana.chavakula/Documents/practise/nodejs/performance-test/node_modules/express/lib/router/layer.js:86:49
+      1    3.1%      Eval: ~<anonymous> internal/url.js:1:1
+      1  100.0%        LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1  100.0%          LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:185:29
+      1  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      1    3.1%      Eval: ~<anonymous> internal/per_context/domexception.js:1:1
+      1    3.1%      Eval: ~<anonymous> internal/console/global.js:1:1
+      1  100.0%        LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1  100.0%          LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:185:29
+      1  100.0%            LazyCompile: ~createGlobalConsole internal/bootstrap/node.js:406:29
+      1    3.1%      Eval: ~<anonymous> internal/bootstrap/loaders.js:1:1
+      1    3.1%      Builtin: DatePrototypeGetMilliseconds
+      1  100.0%        LazyCompile: ~cache internal/http.js:18:15
+      1  100.0%          LazyCompile: ~nowDate internal/http.js:8:17
+      1  100.0%            LazyCompile: ~connectionListenerInternal _http_server.js:326:36
+      1    3.1%      Builtin: CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit
+      1  100.0%        LazyCompile: ~readSync fs.js:490:18
+      1  100.0%          LazyCompile: ~tryReadSync fs.js:333:21
+      1  100.0%            LazyCompile: ~readFileSync fs.js:345:22
+

@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rock-paper-scissors
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rock-paper-scissors
+  template:
+    metadata:
+      labels:
+        app: rock-paper-scissors
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "5000"
+    spec:
+      containers:
+      - name: rock-paper-scissors
+        image: rock-paper-scissors:local
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 10
+        resources:
+          requests:
+            memory: "30Mi"
+            cpu: "100m"
+          limits:
+            memory: "60Mi"
+            cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rock-paper-scissors
+spec:
+  selector:
+    app: rock-paper-scissors
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+---
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: rock-paper-scissors-mapping
+spec:
+  prefix: /api/rock-paper-scissors/
+  rewrite: /api/rock-paper-scissors/
+  service: rock-paper-scissors:8000

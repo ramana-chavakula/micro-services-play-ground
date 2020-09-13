@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch
+  namespace: observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+      - name: elasticsearch
+        image: elasticsearch:7.6.0
+        ports:
+        - containerPort: 9200
+        - containerPort: 9300
+        env:
+          - name: discovery.type
+            value: single-node
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+  namespace: observability
+spec:
+  selector:
+    app: elasticsearch
+  ports:
+    - protocol: TCP
+      port: 9200
+      targetPort: 9200
+      name: rest
+    - protocol: TCP
+      port: 9300
+      targetPort: 9300
+      name: internal
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+  namespace: observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+      - name: kibana
+        image: kibana:7.6.0
+        ports:
+        - containerPort: 5601
+        env:
+          - name: elasticsearch.hosts
+            value: http://elasticsearch.observability.svc.cluster.local:9200
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana
+  namespace: observability
+spec:
+  selector:
+    app: kibana
+  ports:
+    - protocol: TCP
+      port: 5601
+      targetPort: 5601

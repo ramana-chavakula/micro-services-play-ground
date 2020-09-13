@@ -1,0 +1,21 @@
+{
+  "name": "performance-test",
+  "version": "1.0.0",
+  "description": "pefromance test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jaeger-client": "^3.18.0",
+    "on-headers": "^1.0.2",
+    "opentracing": "^0.14.4",
+    "pino": "^6.2.1",
+    "prom-client": "^12.0.0",
+    "request": "^2.88.2",
+    "uuid": "^8.0.0"
+  }
+}
