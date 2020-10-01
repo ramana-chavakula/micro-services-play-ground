@@ -3,24 +3,21 @@
 helm install <NAME> <CHART> [flags]
 ```
 
-## Install Prometheus through helm
+## Add a chart to helm
 
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
 
+## Install a chart through helm
+```
 helm install my-prometheus-release -n=monitoring prometheus-community/prometheus \
 --set server.global.scrape_interval=15s
 ```
 
-## Delete Prometheus through helm
+## Delete a chart through helm
 ```
 helm delete -n=monitoring my-prometheus-release
-```
-
-[Represent POD's CPU usage in terms of CPU cores using prometheus metrics](https://stackoverflow.com/questions/61693687/is-there-any-way-to-represent-pod-cpu-usage-in-terms-of-cpu-cores-using-promethe)
-
-```PromQL
-sum(rate(container_cpu_usage_seconds_total{namespace="$namespace", pod="$pod", container!="POD", container!=""}[1m])) by (pod)
 ```
 
 ## Port Forwarding
@@ -70,3 +67,4 @@ http://localhost:9200/_cat/indices
 * https://github.com/fluent/fluentd-kubernetes-daemonset/blob/master/fluentd-daemonset-elasticsearch.yaml
 * https://github.com/fluent/fluentd-kubernetes-daemonset/blob/master/fluentd-daemonset-elasticsearch-rbac.yaml
 * https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes
+* https://www.alibabacloud.com/blog/kubernetes-eviction-policies-for-handling-low-ram-and-disk-space-situations---part-1_595202

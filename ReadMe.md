@@ -39,3 +39,25 @@ Run the below commands, to make sure the start script created all the necessary 
 ```
 sh scripts/stop.sh
 ```
+
+## Micro Services
+
+Below are the list of micro services that we have created in this project
+
+  * **rock-paper-scissors** service exposes a start endpoint to serves as a rock paper scissors game
+  * **performance-test** service expsoses various endpoints to test the POD resource metrics
+
+
+## Documents
+
+Below are the reference documents, for some of the tools and services that we have used in this project
+
+[Ambassador](./docs/ambassador.md)
+
+[Grafana](./docs/grafana.md)
+
+[Jaeger](./docs/jaeger.md)
+
+[Prometheus](./docs/prometheus.md)
+
+[Minikube](./docs/minikube.md)
