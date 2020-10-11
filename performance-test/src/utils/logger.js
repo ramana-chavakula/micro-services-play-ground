@@ -1,6 +1,7 @@
 const pino = require('pino')
 const level = process.env.LOG_LEVEL || 'info'
 const LOG_LEVELS = ['trace', 'debug', 'info', 'warn', 'error', 'fatal']
+const { getContext } = require('./context')
 
 class Logger {
   constructor(options) {
@@ -27,6 +28,11 @@ class Logger {
 
   log(level, ...args) {
     let obj = { ...this.options, level }
+    const currentContext = getContext()
+    if (currentContext) {
+      const { traceId, spanId, fromSpanId } = currentContext
+      obj = Object.assign({}, obj, { traceId, spanId, fromSpanId })
+    }
     let msg = ''
     for (const arg of args) {
       if (typeof arg === 'object') {

@@ -1,6 +1,8 @@
 const { name, version } = require('../../package.json')
 const Logger = require('./logger')
 const  { EventEmitter } = require('events');
+const fs = require('fs');
+const logger = getLogger(__filename)
 
 function getLogger(filename) {
   return new Logger({
@@ -11,7 +13,7 @@ function getLogger(filename) {
 }
 
 function yooMemorySync(x) {
-  for (i = 0; i < 1000; i++) {
+  for (let i = 0; i < 1000; i++) {
     x.push("yooo")
   }
 }
@@ -20,10 +22,11 @@ function yooMemory(x) {
   return new Promise(resolve => {
     const eventEmitter = new EventEmitter();
     setImmediate(() => {
-      for (i = 0; i < 1000; i++) {
+      for (let i = 0; i < 1000; i++) {
         x.push("yooo")
       }
       eventEmitter.emit('done')
+      logger.info('bloated the heap memory')
     })
     eventEmitter.on('done', resolve)
   })
@@ -53,6 +56,7 @@ function memoryIntensiveSync(scale = 2) {
 
 function busyTheCPU () {
   for (let i = 0; i < 1e7; i++) {}
+  logger.info('hurray!! at last I am unblocked')
 }
 function cpuIntensive(scale = 1) {
   for (let count = 0; count < scale; count++) {
@@ -66,10 +70,14 @@ function sleep(time) {
   })
 }
 
+function syncLog (msg) {
+  fs.writeSync(1, msg + '\n')
+}
 module.exports = {
   getLogger,
   sleep,
   memoryIntensive,
   memoryIntensiveSync,
-  cpuIntensive
+  cpuIntensive,
+  syncLog
 }

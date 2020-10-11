@@ -46,12 +46,12 @@ kubectl get secret --namespace monitoring my-grafana-release -o jsonpath="{.data
 * Kubernetes cluster monitoring (via Prometheus) - 315
 * K8 Cluster Detail Dashboard - 10856
 
-## Load Pod Overview Custom dashboard
+## Load Custom Dashboards
 
 * Select [import](http://localhost:3000/dashboard/import) in the grafana
-* Copy paste the grafana-dashboard.json file content in Import via panel json
-* Click on load
-* Click on import
+* Copy paste the [pod-overview.json](../grafana-dashboards/pod-overview.json) file content in **Import via panel json** section
+* Click on load and then import to add **POD Overview dashboard** to the list of grafana dashboards
+* Smilarly use [http-requests-overview.json](../grafana-dashboards/http-requests-overview.json) to import **Http Requests Overview** dashboard
 
 ## Preview CPU throttling
 Run the below command for two times
@@ -67,7 +67,7 @@ However, a POD will not be killed for excessive CPU usage but all the requested 
 
  
 ## Preview OOM restart
-Run the below command for two times
+Run the below command multiple times
 ```apache benchmark
  ab -c 5 -k -n 100 http://localhost:8000/memorySpike/100
 ```
@@ -83,4 +83,4 @@ We can avoid this and can get a more real time metrics by decreasing the scrape 
 
 ## Observations
 
-* Initially while testing the OOM restart, I have observed that the POD is getting restarted even before it reaches the memory limit beacuse of the readiness probe that I have added initially for the performance-test deployment.
+* Initially while testing the OOM restart, I have observed that the POD is getting restarted even before it reaches the memory limit beacuse of the liveness probe that I have added initially for the performance-test deployment.

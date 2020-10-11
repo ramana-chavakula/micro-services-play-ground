@@ -2,6 +2,7 @@ const express = require('express')
 const prometheusClient = require('prom-client')
 const request = require('request')
 const { sleep, memoryIntensive, cpuIntensive, memoryIntensiveSync, getLogger } = require('./utils/utils')
+const { register } = require('./utils/context')
 const logger = getLogger(__filename)
 const TRACE_HEADERS = {
   traceId: 'x-trace-id',
@@ -12,11 +13,12 @@ const endpointInterceptor = require('./utils/endpointInterceptor')({ TRACE_HEADE
 const { FORMAT_HTTP_HEADERS } = require('opentracing')
 const tracer = require('./utils/tracer')
 
+register()
 const app = express()
 const { Game_Host='0.0.0.0', Game_Port='5000', PORT: port=8000 } = process.env
 
 app.use(endpointInterceptor)
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (_, res) => res.send('Hello World!'))
 app.get('/delay/:time', async (req, res) => {
   const { time } = req.params
   await sleep(time)
@@ -24,6 +26,7 @@ app.get('/delay/:time', async (req, res) => {
 })
 app.get('/sleep/:time', async (req, res) => {
   const { time } = req.params
+  logger.info('redirecting to delay route')
   res.redirect(`/delay/${time}`)
 })
 app.get('/memory[S|s]pike/:scale', async (req, res) => {

@@ -18,7 +18,7 @@ helm delete -n=monitoring my-prometheus-release
 
 - To get the cpu core limit of the POD
 ```
-kube_pod_container_resource_limits_cpu_cores{namespace=~"$namespace", pod=~"$pod", container!="POD", container!=""}
+avg(kube_pod_container_resource_limits_cpu_cores{namespace=~"$namespace", pod=~"$pod", container!="POD", container!=""})
 ```
 - [Represent POD's CPU usage in terms of CPU cores using prometheus metrics](https://stackoverflow.com/questions/61693687/is-there-any-way-to-represent-pod-cpu-usage-in-terms-of-cpu-cores-using-promethe)
 

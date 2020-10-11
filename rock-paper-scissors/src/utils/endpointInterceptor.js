@@ -37,7 +37,7 @@ function getTraceInfo(req, TRACE_HEADERS) {
 
 function onStart (req, res, { TRACE_HEADERS }) {
   const { method, originalUrl } = req
-  if (originalUrl === '/metrics' || originalUrl === '/') {
+  if (originalUrl === '/metrics' || originalUrl === '/' || originalUrl.includes('.ambassador-internal')) {
     return
   }
   // fetchig / generating the trace headers
@@ -68,9 +68,9 @@ function onStart (req, res, { TRACE_HEADERS }) {
   gauge.labels(originalUrl).inc()
 }
 
-function onEnd (req, res, { TRACE_HEADERS }) {
+function onEnd (req, res) {
   const { method, originalUrl, span } = req
-  if (originalUrl === '/metrics' || originalUrl === '/') {
+  if (originalUrl === '/metrics' || originalUrl === '/' || originalUrl.includes('.ambassador-internal')) {
     return
   }
   const { statusCode } = res
@@ -94,14 +94,14 @@ function onEnd (req, res, { TRACE_HEADERS }) {
 
 function apiMetrics(options) {
   options = Object.assign({}, { TRACE_HEADERS }, options)
-  const { before, after} = options || {}
+  const { before, after } = options || {}
   return function apiMetricsMiddleware(req, res, next) {
     onStart(req, res, options)
     if (typeof before === 'function') {
       before(req, res)
     }
     onHeaders(res, () => {
-      onEnd(req, res, options)
+      onEnd(req, res)
       if (typeof after === 'function') {
         after(req, res)
       }

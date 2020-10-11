@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1599990469518,
+  "iteration": 1602325570999,
   "links": [],
   "panels": [
     {
@@ -62,7 +62,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "sum(kube_pod_status_phase{namespace=~\"$namespace\", pod=~\"$service.*\", pod=~\"$pod\"}) by (phase)",
@@ -85,8 +85,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -114,7 +113,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -194,8 +193,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -222,7 +220,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -310,8 +308,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -338,7 +335,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -355,8 +352,9 @@
           "refId": "A"
         },
         {
-          "expr": "kube_pod_container_resource_limits_memory_bytes{pod=\"$pod\", container!=\"\", container!=\"POD\"}",
+          "expr": "avg(kube_pod_container_resource_limits_memory_bytes{namespace=~\"$namespace\", pod=~\"$service.*\", pod=~\"$pod\", container!=\"POD\", container!=\"\"})",
           "format": "time_series",
+          "hide": false,
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
@@ -364,7 +362,7 @@
           "refId": "B"
         },
         {
-          "expr": "kube_pod_container_resource_requests_memory_bytes{pod=\"$pod\", container!=\"\", container!=\"POD\"}",
+          "expr": "avg(kube_pod_container_resource_requests_memory_bytes{namespace=~\"$namespace\", pod=~\"$service.*\", pod=~\"$pod\", container!=\"POD\", container!=\"\"})",
           "interval": "",
           "legendFormat": "container request",
           "refId": "C"
@@ -428,6 +426,13 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -450,10 +455,8 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
           "percentage": false,
+          "pluginVersion": "7.1.5",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -518,6 +521,13 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -540,10 +550,8 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
           "percentage": false,
+          "pluginVersion": "7.1.5",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -614,7 +622,7 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "default",
           "value": "default"
         },
@@ -640,7 +648,7 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "performance-test",
           "value": "performance-test"
         },
@@ -667,8 +675,8 @@
         "allValue": ".*",
         "current": {
           "selected": true,
-          "text": "performance-test-b94c76c47-n92cf",
-          "value": "performance-test-b94c76c47-n92cf"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "Prometheus",
         "definition": "label_values(kube_pod_info{namespace=~\"$namespace\", pod=~\"$service.*\"}, pod)",
@@ -737,5 +745,5 @@
   "timezone": "",
   "title": "POD Overview",
   "uid": "b-k9QT6Zz",
-  "version": 2
+  "version": 1
 }
